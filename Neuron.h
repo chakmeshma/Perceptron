@@ -2,6 +2,8 @@
 // Created by chakmeshma on 25.11.2017.
 //
 
+//TODO make learning generic
+
 #ifndef PERCEPTRON_PERCEPTRON_H
 #define PERCEPTRON_PERCEPTRON_H
 
@@ -10,6 +12,7 @@
 #include <vector>
 #include <random>
 #include <iostream>
+#include <ctime>
 
 typedef bool Spike;
 typedef float Weight; //TODO make it normalized variable

@@ -1,3 +1,4 @@
+
 #include "Neuron.h"
 
 static float sigmoid(float x) {
@@ -5,23 +6,31 @@ static float sigmoid(float x) {
 }
 
 static bool activation(float x) {
-    return (x >= 0.0f);
+    return (x >= 0.5f);
 }
 
 int main() {
-    Neuron koontaqal(2, sigmoid, activation);
+    srand(time(NULL));
 
     Spike x0, x1;
+    while (true) {
+        Neuron *koontaqal = new Neuron(2, sigmoid, activation);
 
-    std::cout << "X0?" << std::endl;
-    std::cin >> x0;
-    std::cout << "X1?" << std::endl;
-    std::cin >> x1;
+        std::cout << "X0?" << std::endl;
+        std::cin >> x0;
+        std::cout << "X1?" << std::endl;
+        std::cin >> x1;
 
-    std::cout << "Neuron Output: " << ((koontaqal.compute(new Spike[2]{x0, x1}, 2)) ? ("True") : ("False"))
-              << std::endl;
+        Spike *inputs = new Spike[2]{x0, x1};
 
-    getchar();
+        std::cout << "Neuron Output: " << ((koontaqal->compute(inputs, 2)) ? ("True") : ("False"))
+                  << std::endl;
+
+        delete[] inputs;
+
+        delete koontaqal;
+    }
+
 
     return 0;
 }
