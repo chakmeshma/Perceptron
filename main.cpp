@@ -1,6 +1,16 @@
 
 #include "Neuron.h"
 
+
+static Spike Or_Function(Spike *inputs, uint8_t inputCount)
+{
+    for (int i = 0; i < inputCount; ++i) {
+        if(inputs[i])
+            return true;
+    }
+    return  false;
+}
+
 static float sigmoid(float x) {
     return 1.0f / (1.0f + pow(M_E, -x));
 }
@@ -23,8 +33,10 @@ int main() {
 
         Spike *inputs = new Spike[2]{x0, x1};
 
-        std::cout << "Neuron Output: " << ((koontaqal->compute(inputs, 2)) ? ("True") : ("False"))
+        std::cout << "Guessed Neuron Output: " << ((koontaqal->compute(inputs, 2)) ? ("True") : ("False"))
                   << std::endl;
+
+        koontaqal->train(inputs,Or_Function(inputs,2),0.1);
 
         delete[] inputs;
 
@@ -34,3 +46,4 @@ int main() {
 
     return 0;
 }
+

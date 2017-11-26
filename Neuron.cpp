@@ -29,3 +29,19 @@ Spike Neuron::compute(Spike *inputs, uint32_t inputCount) {
 
     return _neuronActivationFunction(_neuronFunction(sum));
 }
+
+void Neuron::train(Spike *inputs, Spike answer, float learningRate) {
+
+    float guess = compute (inputs, inputCount) ? 1.0 : 0.0;
+    float  answer_int = answer ? 1.0 : 0.0;
+
+    float error = answer_int - guess;
+
+    for (int i = 0; i < inputCount; ++i) {
+        float weightGradientFactor = error * inputs[i] * learningRate;
+        weights[i] += weightGradientFactor;
+    }
+
+
+
+}

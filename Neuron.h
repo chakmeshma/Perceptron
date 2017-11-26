@@ -29,6 +29,8 @@ public:
 
     Spike compute(Spike inputs[], uint32_t inputCount);
 
+    void train(Spike inputs[], Spike answer,float learningRate);
+
 private:
     std::vector<Weight> weights;
     uint32_t inputCount;
